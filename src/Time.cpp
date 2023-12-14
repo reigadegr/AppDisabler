@@ -2,8 +2,6 @@
 #include <iomanip>
 #include <sstream>
 
-// #include "include/function.h"
-
 auto printCurrentTime() -> std::string
 {
     // 获取当前时间点
