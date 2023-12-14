@@ -3,8 +3,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-// 记录同一app的使用时间 单位 秒
-static int count = 0;
+
 
 auto getTopApp() -> std::string;
 auto printCurrentTime() -> std::string;
@@ -20,8 +19,10 @@ auto readProfile(const char *profile, std::vector<std::string> &apps) {
 
     file.close();
 }
+// 记录同一app的使用时间 单位 秒
+static int count = 0;
 // 单位;秒
-#define 超时保护时间 3
+#define 超时保护时间 300
 auto run(std::vector<std::string> &apps, std::string &now_package) -> bool {
     std::string const TopApp = getTopApp();
     if (TopApp == now_package) {

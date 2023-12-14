@@ -29,6 +29,7 @@ compile_start(){
     -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s,--strip-all \
     $(dirname "$0")/../src/*.cpp -o $(dirname "$0")/../output/$FileName && echo "*编译完成*" || exit 1
+    rm $(dirname "$0")/../src/*.bak
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/../output/$FileName
     chmod +x $(dirname "$0")/../output/$FileName
 

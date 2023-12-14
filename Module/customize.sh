@@ -1,0 +1,2 @@
+SKIPUNZIP=0
+MODDIR=${0%/*}
