@@ -20,8 +20,9 @@ if [ -f $MODDIR/$FileName.log ]; then
     mv -f $MODDIR/$FileName.log "$MODDIR/log/$(date).log"
     chattr +i "$MODDIR/log/$(date).log"
 fi
+chattr -R -i $MODDIR
 touch $MODDIR/$FileName.log
 chown 0:0 $MODDIR/$FileName
 chmod +x $MODDIR/$FileName
-killall -15 $FileName iris_helper
+killall -15 $FileName
 nohup $MODDIR/$FileName $MODDIR/config/ProtectList.txt >$MODDIR/$FileName.log 2>&1 &

@@ -2,7 +2,7 @@
 
 This tool is capable of safeguarding specified applications for users and preventing others from intruding into their privacy.
 
-这个工具能够保护用户指定的应用程序，并防止其他人侵犯他们的隐私。
+这个工具能够保护用户指定的应用程序，以防止其他人侵犯他们的隐私。
 
 ### background
 

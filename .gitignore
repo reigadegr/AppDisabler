@@ -2,6 +2,7 @@
 .git
 output
 Module/config/*.bak
+Module/log
 build_speed/*.cpp
 */AppDisabler
 *.bak

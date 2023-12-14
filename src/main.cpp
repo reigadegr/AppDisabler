@@ -23,13 +23,14 @@ auto readProfile(const char *profile, std::vector<std::string> &apps)
 // 记录同一app的使用时间 单位 秒
 static int count = 0;
 // 单位;秒
-#define 超时保护时间 300
+#define 超时关闭app时间 235
+#define 超时关机时间 500
 auto run(std::vector<std::string> &apps, std::string &now_package) -> bool
 {
     std::string const TopApp = getTopApp();
     if (TopApp == now_package) {
         count++;
-        if (count > 超时保护时间) {
+        if (count > 超时关闭app时间) {
             for (const auto &app : apps) {
                 std::system(
                     ("nohup pm disable " + app + " >/dev/null 2>&1 &").c_str());
@@ -67,8 +68,8 @@ auto main(int argc, char **argv) -> int
     for (const auto &app : apps) {
         LOG("已经添加保护的app: ", app);
     }
+    LOG("超时时间: ", 超时关闭app时间);
     std::string now_package = "";
     std::thread HeavyThread(runStart, std::ref(apps), std::ref(now_package));
     HeavyThread.join();
-    // runStart(apps, now_package);
 }
