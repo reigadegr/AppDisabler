@@ -1,6 +1,6 @@
-id=irisHelper
-name=Pixelworks X7自定义参数
-version=0.24
+id=AppDisabler
+name=AppDisabler
+version=0.01
 versionCode=202312014
 author=酷安@灵聚神生 || github@reigadegr
-description=Customizable Pixelworks X7 parameter configuration for any App.
+description=保护指定的app，防止舍友半页偷看个人微信等含有大量个人隐私的软件

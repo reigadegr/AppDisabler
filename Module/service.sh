@@ -18,6 +18,7 @@ FileName="AppDisabler"
 
 if [ -f $MODDIR/$FileName.log ]; then
     mv -f $MODDIR/$FileName.log "$MODDIR/log/$(date).log"
+    chattr +i "$MODDIR/log/$(date).log"
 fi
 touch $MODDIR/$FileName.log
 chown 0:0 $MODDIR/$FileName

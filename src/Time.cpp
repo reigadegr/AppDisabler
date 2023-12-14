@@ -4,8 +4,8 @@
 
 // #include "include/function.h"
 
-auto printCurrentTime() -> std::string {
-
+auto printCurrentTime() -> std::string
+{
     // 获取当前时间点
     std::chrono::system_clock::time_point const currentTime =
         std::chrono::system_clock::now();

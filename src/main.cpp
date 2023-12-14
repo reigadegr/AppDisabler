@@ -1,13 +1,14 @@
-#include "include/LOG.h"
 #include <fstream>
 #include <iostream>
 #include <thread>
 #include <vector>
 
+#include "include/LOG.h"
 
 auto getTopApp() -> std::string;
 auto printCurrentTime() -> std::string;
-auto readProfile(const char *profile, std::vector<std::string> &apps) {
+auto readProfile(const char *profile, std::vector<std::string> &apps)
+{
     std::ifstream file(profile);
     std::string buf;
     while (std::getline(file, buf)) {
@@ -23,7 +24,8 @@ auto readProfile(const char *profile, std::vector<std::string> &apps) {
 static int count = 0;
 // 单位;秒
 #define 超时保护时间 300
-auto run(std::vector<std::string> &apps, std::string &now_package) -> bool {
+auto run(std::vector<std::string> &apps, std::string &now_package) -> bool
+{
     std::string const TopApp = getTopApp();
     if (TopApp == now_package) {
         count++;
@@ -44,15 +46,16 @@ auto run(std::vector<std::string> &apps, std::string &now_package) -> bool {
 
     return true;
 }
-auto runStart(std::vector<std::string> &apps, std::string &now_package)
-    -> bool {
+auto runStart(std::vector<std::string> &apps, std::string &now_package) -> bool
+{
     pthread_setname_np(pthread_self(), "HeavyThread");
     while (true) {
         run(apps, now_package);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
-auto main(int argc, char **argv) -> int {
+auto main(int argc, char **argv) -> int
+{
     pthread_setname_np(pthread_self(), "MainThread");
     if (argv[1] == nullptr) {
         LOG("命令行参数没写");

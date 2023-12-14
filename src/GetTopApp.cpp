@@ -12,7 +12,8 @@
 static inline auto getTopAppShell() -> std::string;
 static inline auto execCmdSync(std::string command,
                                const std::vector<std::string> &args)
-    -> std::string {
+    -> std::string
+{
     // 将命令和参数拼接为一个字符串
     for (const auto &arg : args) {
         command += " ";
@@ -32,10 +33,12 @@ static inline auto execCmdSync(std::string command,
     return result;
 }
 
-static inline auto Testfile(const char *location) {
+static inline auto Testfile(const char *location)
+{
     return access(location, F_OK) == 0;
 }
-auto getTopApp() -> std::string {
+auto getTopApp() -> std::string
+{
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
         std::string pid;
 
@@ -72,14 +75,15 @@ auto getTopApp() -> std::string {
 // 这个方式开销较大
 // execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
 
-static inline auto getTopAppShell() -> std::string {
+static inline auto getTopAppShell() -> std::string
+{
     std::string name = execCmdSync("/system/bin/dumpsys", {"activity", "lru"});
     const auto pkgPos = name.find(" TOP") + 4;
     // find第二个参数:从指定的位置开始搜索
     name = name.substr(pkgPos, name.find('/', pkgPos) - pkgPos);
     size_t pos;
     if ((pos = name.find(":")) != std::string::npos) {
-        name.erase(0, pos + 1); // 删除冒号及其前面的内容
+        name.erase(0, pos + 1);  // 删除冒号及其前面的内容
     }
 
     return name;

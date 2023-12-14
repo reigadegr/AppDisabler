@@ -6,8 +6,9 @@ remove_file(){
 FileName="AppDisabler"
 format_code(){
     code_file="
-        $(dirname "$0")/*.cpp
-        $(dirname "$0")/include/*.h
+        $(dirname "$0")/../src/*.cpp
+        $(dirname "$0")/../src/include/*.h
+        $(dirname "$0")/../src/include/*.hpp
     "
 
     for i in $code_file; do
@@ -29,7 +30,7 @@ compile_start(){
     -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s,--strip-all \
     $(dirname "$0")/../src/*.cpp -o $(dirname "$0")/../output/$FileName && echo "*编译完成*" || exit 1
-    rm $(dirname "$0")/../src/*.bak
+    rm $(dirname "$0")/../src/*.bak 2>/dev/null
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/../output/$FileName
     chmod +x $(dirname "$0")/../output/$FileName
 
