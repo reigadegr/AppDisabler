@@ -1,0 +1,7 @@
+#QQ
+com.tencent.mobileqq
+#微信
+com.tencent.mm
+#抖音
+com.ss.android.ugc.aweme
+
